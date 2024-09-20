@@ -1,6 +1,6 @@
 // import { places } from "../../../lib/db";
 import Places from "@/db/models/Places";
-import dbConnect from "@/db/models/Connect.js";
+import dbConnect from "@/db/models/connect.js";
 
 export default async function handler(request, response) {
   await dbConnect();
