@@ -1,5 +1,5 @@
 // import { places } from "../../../../lib/db.js";
-import dbConnect from "@/db/models/Connect";
+import dbConnect from "@/db/models/connect";
 import Places from "@/db/models/Places";
 
 export default async function handler(request, response) {
@@ -14,7 +14,19 @@ export default async function handler(request, response) {
       }
       return response.status(200).json(place);
     } catch (error) {
-      return res.status(500).json({ error: "Error fetching place" });
+      return response.status(500).json({ error: "Error fetching place" });
+    }
+  }
+
+  if (request.method === "PUT") {
+    try {
+      const updatedPlace = request.body;
+
+      await Places.findByIdAndUpdate(id, updatedPlace);
+
+      return response.status(200).json({ message: `Place ${id} updated!` });
+    } catch (error) {
+      return response.status(500).json({ error: "Error updating place" });
     }
   }
 }

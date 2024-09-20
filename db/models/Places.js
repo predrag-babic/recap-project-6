@@ -1,5 +1,4 @@
 import mongoose from "mongoose";
-import "./Review";
 const { Schema } = mongoose;
 
 const placeSchema = new Schema({
@@ -7,9 +6,9 @@ const placeSchema = new Schema({
   location: { type: String, required: true },
   image: { type: String, required: true },
   mapURL: { type: String, required: true },
-  description: { type: [Schema.Types.ObjectId], ref: "Review" },
+  description: { type: String, required: true },
 });
 
-const Places = mongoose.models.Places || mongoose.model("Place", placeSchema);
+const Places = mongoose.models.Places || mongoose.model("Places", placeSchema);
 
 export default Places;
